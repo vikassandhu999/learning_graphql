@@ -22,10 +22,10 @@ async function getPost(id) {
 
 async function updatePost(id, post) {
   const { title, description } = post;
-  return Post.findByIdAndUpdate(id, {
-    title,
-    description,
-  }, { new: true });
+  const update = {};
+  if (title) update.title = title;
+  if (description) update.description = description;
+  return Post.findByIdAndUpdate(id, update, { new: true });
 }
 
 const PostRepo = {
